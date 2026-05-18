@@ -1,12 +1,9 @@
 # Active-Directory-Implementation-in-Azure
 
-<img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
-</p>
+<img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo" width="200"/>
 
 ---
-
 ## Project Summary
-
 **Type:** Technology Implementation / Walkthrough
 
 This project demonstrates the end-to-end deployment and configuration of an on-premises-style Active Directory environment hosted entirely in Microsoft Azure. Two Azure Virtual Machines are provisioned — one acting as a Windows Server 2022 Domain Controller (DC-1) and one as a Windows 11 client machine (Client-1). Active Directory Domain Services (AD DS) is installed, a domain is created, and the client machine is joined to the domain. Organizational Units, user accounts, and admin accounts are configured and demonstrated throughout.
@@ -28,28 +25,24 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 - PowerShell ISE
 
 ---
-
 ## Environments and Technologies Used
 
-| Component | Details |
-|---|---|
-| Cloud Provider | Microsoft Azure |
-| Domain Controller OS | Windows Server 2022 Datacenter |
-| Client OS | Windows 11 Pro |
-| VM Size | Standard_D2s_v3 |
-| Networking | Azure Virtual Network (AD-VNet) / subnet 10.0.0.0/24 |
-| Resource Group | AD-Lab |
-| Region | East US |
+| Component              | Details                                      |
+|------------------------|----------------------------------------------|
+| Cloud Provider         | Microsoft Azure                              |
+| Domain Controller OS   | Windows Server 2022 Datacenter               |
+| Client OS              | Windows 11 Pro                               |
+| VM Size                | Standard_D2s_v3                              |
+| Networking             | Azure Virtual Network (AD-VNet) / subnet 10.0.0.0/24 |
+| Resource Group         | AD-Lab                                       |
+| Region                 | East US                                      |
 
 ---
-
 ## Operating Systems Used
-
 - **Windows Server 2022** — Domain Controller (DC-1)
 - **Windows 11 Pro** — Client Machine (Client-1)
 
 ---
-
 ## High-Level Deployment and Configuration Steps
 
 1. Deploy Domain Controller VM (DC-1) in Azure and set static private IP
@@ -64,82 +57,71 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 10. Log into Client-1 as a domain user via RDP
 
 ---
-
 ## Demonstration
 
 ### Part 1: Azure Resource Setup
 
-**Step 1 — Deploy Both VMs in Azure**
-
+**Step 1 — Deploy Both VMs in Azure**  
 Two Virtual Machines are created in the same Resource Group (`AD-Lab`) and VNet (`AD-VNet`) in East US — `DC-1` (Windows Server 2022) and `Client-1` (Windows 11 Pro). Both show **Status: Running**.
 
-![Both VMs running in Azure Portal](step01-azure-vms-running.png)
+![Both VMs running in Azure Portal](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step01-azure-vms-running.png)
 
 ---
 
-**Step 2 — Set DC-1's Private IP to Static**
+**Step 2 — Set DC-1's Private IP to Static**  
+Navigate to DC-1's NIC → IP Configurations → Edit → set Allocation to **Static**. DC-1's private IP is locked to `10.0.0.4`.
 
-Navigate to DC-1's NIC → IP Configurations → Edit → set Allocation to **Static**. DC-1's private IP is locked to `10.0.0.4` so Client-1 can always resolve DNS to it.
-
-([<img width="1568" height="737" alt="image" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d" />](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/d5ee1a5056b393acdf9e87ab8787ba06c726c1bb/step02-dc1-static-ip.png)
-)
+<img width="1568" alt="DC-1 Static IP Configuration" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d">
 
 ---
 
 ### Part 2: Installing Active Directory
 
-**Step 3 — Promote DC-1 to Domain Controller**
+**Step 3 — Promote DC-1 to Domain Controller**  
+After installing the AD DS role, the promotion wizard is launched. **Add a new forest** is selected and the root domain name is set to `mydomain.com`.
 
-After installing the AD DS role via Server Manager, the promotion wizard is launched. **Add a new forest** is selected and the root domain name is set to `mydomain.com`.
-
-([<img width="1568" height="737" alt="[image" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d" />](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/d5ee1a5056b393acdf9e87ab8787ba06c726c1bb/step02-dc1-static-ip.pn](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/5cac50689c7e0e711f018ae4acbbd77788f02e5c/step03-adds-promotion-wizard.png)
-)
+<img width="1568" alt="AD DS Promotion Wizard" src="https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step03-adds-promotion-wizard.png">
 
 ---
-**Step 4 — AD DS Installation**
-After launching the VM, the server manager dashboard will automatically open and from there you click "Add roles & features", navigate to role-based or feature-based installation → select a server from the server pool → click "Active Directory Domain Services" → Install and Restart.
 
-![image_alt](["C:\Users\micha\Downloads\step4-ad-installation.png"](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step4-ad-installation.png))
+**Step 4 — AD DS Installation**  
+Install Active Directory Domain Services via Server Manager.
 
-**Step 5 — AD DS Installation Confirmed**
+![AD DS Role Installation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step4-ad-installation.png)
 
-After the server restarts, Server Manager Dashboard shows **AD DS** and **DNS** roles installed and healthy (all green).
+**Step 5 — AD DS Installation Confirmed**  
+Server Manager shows AD DS and DNS roles installed and healthy.
 
-![Server Manager showing AD DS and DNS roles installed]([images/step04-server-manager-adds-installed.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step04-server-manager-adds-installed.png))
+![Server Manager - AD DS and DNS Installed](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step04-server-manager-adds-installed.png)
 
 ---
 
 ### Part 3: Creating Organizational Units and Users
 
-**Step 6 — Create OUs in ADUC**
+**Step 6 — Create OUs in ADUC**  
+Two Organizational Units are created: `_EMPLOYEES` and `_ADMINS`.
 
-Active Directory Users and Computers is opened. Two new Organizational Units are created under `mydomain.com`: `_EMPLOYEES` and `_ADMINS`.
-
-![ADUC showing _EMPLOYEES and _ADMINS OUs created]([images/step05-aduc-ous-created.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step05-aduc-ous-created.png))
-
----
-
-**Step 7 — Create a Domain Admin Account**
-
-A new admin user `mike_admin` (Michael King) is created inside the `_ADMINS` OU. After creation, this account is added to the **Domain Admins** security group and used for all subsequent admin tasks.
-
-![New user mike_admin being created in _ADMINS OU](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step06-mike-admin-created.png)
+![ADUC OUs Created](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step05-aduc-ous-created.png)
 
 ---
 
-**Step 8 — Create Bulk Users with PowerShell**
+**Step 7 — Create a Domain Admin Account**  
+User `mike_admin` (Michael King) created in the `_ADMINS` OU and added to Domain Admins group.
 
-PowerShell ISE is opened as Administrator. A script is run to automatically create domain user accounts (`abell`, `bclark`, `cdiaz`) in the `_EMPLOYEES` OU with a standard password.
+![mike_admin Account Creation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step06-mike-admin-created.png)
 
-![PowerShell ISE running user creation script]([images/step07-powershell-user-creation.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step07-powershell-user-creation.png))
+---
+
+**Step 8 — Create Bulk Users with PowerShell**  
+PowerShell script used to create multiple user accounts in the `_EMPLOYEES` OU.
+
+![PowerShell Bulk User Creation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step07-powershell-user-creation.png)
 
 ---
 
 **Step 9 — Verify Users in ADUC**
 
-The `_EMPLOYEES` OU is selected in ADUC and the newly created users (`abell`, `bclark`, `cdiaz`) are confirmed present and enabled.
-
-![ADUC _EMPLOYEES OU showing created users]([images/step08-aduc-employees-populated.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step08-aduc-employees-populated.png))
+![Employees OU Populated](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step08-aduc-employees-populated.png)
 
 ---
 
@@ -147,25 +129,19 @@ The `_EMPLOYEES` OU is selected in ADUC and the newly created users (`abell`, `b
 
 **Step 10 — Set Client-1 DNS to DC-1's Private IP**
 
-In the Azure Portal, Client-1's NIC DNS settings are changed from **Inherit from virtual network** to **Custom**, pointing to `10.0.0.4` (DC-1's static private IP). This is required for Client-1 to locate the domain controller.
-
-![Client-1 NIC DNS set to 10.0.0.4]([images/step09-client1-dns-set.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step09-client1-dns-set.png))
+![Client-1 DNS Configuration](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step09-client1-dns-set.png)
 
 ---
 
 **Step 11 — Join Client-1 to the Domain**
 
-After restarting Client-1, the Computer Name/Domain Changes dialog confirms the machine is joined to `mydomain.com`. The full computer name shows `Client-1.mydomain.com`.
-
-![Domain join dialog showing mydomain.com]([images/step10-domain-join.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step10-domain-join.png))
+![Domain Join Confirmation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step10-domain-join.png)
 
 ---
 
 **Step 12 — Verify Client-1 in ADUC**
 
-Back on DC-1, the **Computers** container in ADUC shows `Client-1` listed as a Computer object, confirming successful domain join.
-
-![ADUC Computers container showing Client-1]([images/step11-aduc-client1-verified.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step11-aduc-client1-verified.png))
+![Client-1 in AD Computers Container](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step11-aduc-client1-verified.png)
 
 ---
 
@@ -173,39 +149,28 @@ Back on DC-1, the **Computers** container in ADUC shows `Client-1` listed as a C
 
 **Step 13 — RDP into Client-1 as a Domain User**
 
-Remote Desktop Connection is used to connect to Client-1's public IP (`20.42.94.35`) with the domain user account `mydomain.com\abell`.
-
-![RDP login screen with mydomain.com\abell]([images/step12-rdp-domain-user-login.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step12-rdp-domain-user-login.png))
+![RDP Login as Domain User](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step12-rdp-domain-user-login.png)
 
 ---
 
 **Step 14 — Domain User Successfully Logged In**
 
-Client-1's System → About page confirms the machine is logged in as `abell@mydomain.com`, the full device name is `Client-1.mydomain.com`, and the OS is Windows 11 Pro — proving end-to-end Active Directory authentication is working.
-
-![Client-1 About page showing abell@mydomain.com logged in]([images/step13-domain-user-logged-in.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step13-domain-user-logged-in.png))
+![Domain User Logged In - System Info](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step13-domain-user-logged-in.png)
 
 ---
-
 ## Key Takeaways
-
-- Azure Virtual Machines can replicate on-premises Active Directory infrastructure entirely in the cloud
-- Setting a **static private IP** on the Domain Controller before promotion is critical — a dynamic IP breaks DNS and domain joins
-- The Client VM's **DNS must point to the Domain Controller** (not Azure's default DNS) for domain join to succeed
-- PowerShell dramatically speeds up bulk user provisioning and is a critical real-world sysadmin skill
-- Organizational Units provide a structured way to apply Group Policy and manage users at scale
-- The `_ADMINS` OU pattern separates admin accounts from standard users — a best practice in enterprise AD environments
+- Azure Virtual Machines can fully replicate on-premises Active Directory infrastructure.
+- Setting a **static private IP** on the Domain Controller is critical.
+- Client VM DNS **must** point to the Domain Controller.
+- PowerShell is essential for efficient user provisioning.
+- Using separate OUs (`_ADMINS` vs `_EMPLOYEES`) follows enterprise best practices.
 
 ---
-
 ## Skills Demonstrated
-
-- Azure VM provisioning and networking configuration
+- Azure VM provisioning and networking
 - Static IP assignment on Azure NICs
-- Active Directory Domain Services installation and promotion
-- DNS configuration in a cloud environment
-- Organizational Unit and user account management in ADUC
-- Domain admin account creation and group membership
-- PowerShell scripting for bulk user automation
-- Remote Desktop Protocol (RDP) administration
-- Client VM domain join and verification
+- Active Directory Domain Services installation and forest creation
+- DNS configuration for domain environments
+- OU and user management in ADUC
+- PowerShell automation
+- Domain join and RDP administration
