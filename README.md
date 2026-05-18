@@ -81,7 +81,7 @@ Two Virtual Machines are created in the same Resource Group (`AD-Lab`) and VNet 
 
 Navigate to DC-1's NIC → IP Configurations → Edit → set Allocation to **Static**. DC-1's private IP is locked to `10.0.0.4` so Client-1 can always resolve DNS to it.
 
-![DC-1 NIC IP set to Static - 10.0.0.4]([<img width="1568" height="737" alt="image" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d" />](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/d5ee1a5056b393acdf9e87ab8787ba06c726c1bb/step02-dc1-static-ip.png)
+([<img width="1568" height="737" alt="image" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d" />](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/d5ee1a5056b393acdf9e87ab8787ba06c726c1bb/step02-dc1-static-ip.png)
 )
 
 ---
