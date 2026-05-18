@@ -92,7 +92,7 @@ Navigate to DC-1's NIC → IP Configurations → Edit → set Allocation to **St
 
 After installing the AD DS role via Server Manager, the promotion wizard is launched. **Add a new forest** is selected and the root domain name is set to `mydomain.com`.
 
-![AD DS Promotion Wizard - Add a new forest](images/step03-adds-promotion-wizard.png)
+https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/5cac50689c7e0e711f018ae4acbbd77788f02e5c/step03-adds-promotion-wizard.png
 
 ---
 **Step 4 — AD DS Installation**
