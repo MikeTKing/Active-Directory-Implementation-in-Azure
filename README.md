@@ -73,7 +73,7 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 
 Two Virtual Machines are created in the same Resource Group (`AD-Lab`) and VNet (`AD-VNet`) in East US — `DC-1` (Windows Server 2022) and `Client-1` (Windows 11 Pro). Both show **Status: Running**.
 
-![Both VMs running in Azure Portal](images/step01-azure-vms-running.png)
+![Both VMs running in Azure Portal](step01-azure-vms-running.png)
 
 ---
 
@@ -94,8 +94,12 @@ After installing the AD DS role via Server Manager, the promotion wizard is laun
 ![AD DS Promotion Wizard - Add a new forest](images/step03-adds-promotion-wizard.png)
 
 ---
+**Step 4 — AD DS Installation**
+After launching the VM, the server manager dashboard will automatically open and from there you click "Add roles & features", navigate to role-based or feature-based installation → select a server from the server pool → click "Active Directory Domain Services" → Install and Restart.
 
-**Step 4 — AD DS Installation Confirmed**
+![AD Installed]("C:\Users\micha\Downloads\step4-ad-installation.png")
+
+**Step 5 — AD DS Installation Confirmed**
 
 After the server restarts, Server Manager Dashboard shows **AD DS** and **DNS** roles installed and healthy (all green).
 
