@@ -99,91 +99,91 @@ After installing the AD DS role via Server Manager, the promotion wizard is laun
 **Step 4 — AD DS Installation**
 After launching the VM, the server manager dashboard will automatically open and from there you click "Add roles & features", navigate to role-based or feature-based installation → select a server from the server pool → click "Active Directory Domain Services" → Install and Restart.
 
-![AD Installed]("C:\Users\micha\Downloads\step4-ad-installation.png")
+![image_alt](["C:\Users\micha\Downloads\step4-ad-installation.png"](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step4-ad-installation.png))
 
 **Step 5 — AD DS Installation Confirmed**
 
 After the server restarts, Server Manager Dashboard shows **AD DS** and **DNS** roles installed and healthy (all green).
 
-![Server Manager showing AD DS and DNS roles installed](images/step04-server-manager-adds-installed.png)
+![Server Manager showing AD DS and DNS roles installed]([images/step04-server-manager-adds-installed.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step04-server-manager-adds-installed.png))
 
 ---
 
 ### Part 3: Creating Organizational Units and Users
 
-**Step 5 — Create OUs in ADUC**
+**Step 6 — Create OUs in ADUC**
 
 Active Directory Users and Computers is opened. Two new Organizational Units are created under `mydomain.com`: `_EMPLOYEES` and `_ADMINS`.
 
-![ADUC showing _EMPLOYEES and _ADMINS OUs created](images/step05-aduc-ous-created.png)
+![ADUC showing _EMPLOYEES and _ADMINS OUs created]([images/step05-aduc-ous-created.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step05-aduc-ous-created.png))
 
 ---
 
-**Step 6 — Create a Domain Admin Account**
+**Step 7 — Create a Domain Admin Account**
 
 A new admin user `mike_admin` (Michael King) is created inside the `_ADMINS` OU. After creation, this account is added to the **Domain Admins** security group and used for all subsequent admin tasks.
 
-![New user mike_admin being created in _ADMINS OU](images/step06-mike-admin-created.png)
+![New user mike_admin being created in _ADMINS OU](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step06-mike-admin-created.png)
 
 ---
 
-**Step 7 — Create Bulk Users with PowerShell**
+**Step 8 — Create Bulk Users with PowerShell**
 
 PowerShell ISE is opened as Administrator. A script is run to automatically create domain user accounts (`abell`, `bclark`, `cdiaz`) in the `_EMPLOYEES` OU with a standard password.
 
-![PowerShell ISE running user creation script](images/step07-powershell-user-creation.png)
+![PowerShell ISE running user creation script]([images/step07-powershell-user-creation.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step07-powershell-user-creation.png))
 
 ---
 
-**Step 8 — Verify Users in ADUC**
+**Step 9 — Verify Users in ADUC**
 
 The `_EMPLOYEES` OU is selected in ADUC and the newly created users (`abell`, `bclark`, `cdiaz`) are confirmed present and enabled.
 
-![ADUC _EMPLOYEES OU showing created users](images/step08-aduc-employees-populated.png)
+![ADUC _EMPLOYEES OU showing created users]([images/step08-aduc-employees-populated.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step08-aduc-employees-populated.png))
 
 ---
 
 ### Part 4: Joining Client-1 to the Domain
 
-**Step 9 — Set Client-1 DNS to DC-1's Private IP**
+**Step 10 — Set Client-1 DNS to DC-1's Private IP**
 
 In the Azure Portal, Client-1's NIC DNS settings are changed from **Inherit from virtual network** to **Custom**, pointing to `10.0.0.4` (DC-1's static private IP). This is required for Client-1 to locate the domain controller.
 
-![Client-1 NIC DNS set to 10.0.0.4](images/step09-client1-dns-set.png)
+![Client-1 NIC DNS set to 10.0.0.4]([images/step09-client1-dns-set.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step09-client1-dns-set.png))
 
 ---
 
-**Step 10 — Join Client-1 to the Domain**
+**Step 11 — Join Client-1 to the Domain**
 
 After restarting Client-1, the Computer Name/Domain Changes dialog confirms the machine is joined to `mydomain.com`. The full computer name shows `Client-1.mydomain.com`.
 
-![Domain join dialog showing mydomain.com](images/step10-domain-join.png)
+![Domain join dialog showing mydomain.com]([images/step10-domain-join.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step10-domain-join.png))
 
 ---
 
-**Step 11 — Verify Client-1 in ADUC**
+**Step 12 — Verify Client-1 in ADUC**
 
 Back on DC-1, the **Computers** container in ADUC shows `Client-1` listed as a Computer object, confirming successful domain join.
 
-![ADUC Computers container showing Client-1](images/step11-aduc-client1-verified.png)
+![ADUC Computers container showing Client-1]([images/step11-aduc-client1-verified.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step11-aduc-client1-verified.png))
 
 ---
 
 ### Part 5: Logging in as a Domain User
 
-**Step 12 — RDP into Client-1 as a Domain User**
+**Step 13 — RDP into Client-1 as a Domain User**
 
 Remote Desktop Connection is used to connect to Client-1's public IP (`20.42.94.35`) with the domain user account `mydomain.com\abell`.
 
-![RDP login screen with mydomain.com\abell](images/step12-rdp-domain-user-login.png)
+![RDP login screen with mydomain.com\abell]([images/step12-rdp-domain-user-login.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step12-rdp-domain-user-login.png))
 
 ---
 
-**Step 13 — Domain User Successfully Logged In**
+**Step 14 — Domain User Successfully Logged In**
 
 Client-1's System → About page confirms the machine is logged in as `abell@mydomain.com`, the full device name is `Client-1.mydomain.com`, and the OS is Windows 11 Pro — proving end-to-end Active Directory authentication is working.
 
-![Client-1 About page showing abell@mydomain.com logged in](images/step13-domain-user-logged-in.png)
+![Client-1 About page showing abell@mydomain.com logged in]([images/step13-domain-user-logged-in.png](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/11547fea0709a1091979590f2d8f4c4166798552/step13-domain-user-logged-in.png))
 
 ---
 
