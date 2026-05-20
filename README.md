@@ -98,6 +98,7 @@ Password: Create a strong password and save it
 Public inbound ports: Select RDP (3389)
 
 <img width="1869" height="905" alt="image" src="https://github.com/user-attachments/assets/de8c603b-1fed-4b62-ac76-cf57be9e6adc" />
+
 Click Next: Networking
 Configure Networking:
 
@@ -112,6 +113,7 @@ Click Review + create → Create
 <img width="1883" height="894" alt="image" src="https://github.com/user-attachments/assets/31547441-2167-4442-9c57-f1f161fc4f2f" />
 
 Wait for deployment to complete. This may take 3-5 minutes. Once complete, you'll see a "Deployment successful" message.
+
 <img width="359" height="152" alt="image" src="https://github.com/user-attachments/assets/05155078-7494-49a8-99ed-682b1599bacf" />
 
 Step 4: Set DC-1's Network Interface to Static IP
@@ -124,12 +126,14 @@ Click the Network Interface link (usually named something like dc-1***)
 
 On the left menu, click IP configurations
 Click on the IP configuration (usually named ipconfig1)
+
 <img width="1877" height="891" alt="image" src="https://github.com/user-attachments/assets/2000b79a-2ad8-4fcd-b164-b9f28297ba18" />
 
 Change Allocation from Dynamic to Static
 Keep the IP address as is (Azure should auto-assign something like 10.0.0.4)
 Click Save
 <img width="383" height="896" alt="image" src="https://github.com/user-attachments/assets/9f6c5760-9af5-48e5-bdb9-ab6054408004" />
+
 Important: Note down DC-1's private IP address (e.g., 10.0.0.5). You'll need this when configuring Client-1's DNS.
 
 Step 5: Create Client VM (Client-1)
@@ -149,6 +153,7 @@ Size: Standard_D2s_v3
 Username: localuser (or your choice)
 Password: Create a strong password and save it
 Public inbound ports: Select RDP (3389)
+
 <img width="1871" height="925" alt="image" src="https://github.com/user-attachments/assets/636a9785-45c4-4caa-a599-c3b1cab6cd16" />
 
 Click Next: Networking
@@ -162,6 +167,7 @@ NIC network security group: (Use the existing one or create new)
 
 Click Review + create → Create
 <img width="1875" height="920" alt="image" src="https://github.com/user-attachments/assets/18a5c2a4-834b-44ef-a1b8-38274424ec97" />
+
 Wait for deployment to complete.
 
 <img width="1870" height="886" alt="image" src="https://github.com/user-attachments/assets/62c251b6-14df-41a7-a68f-b3d583664809" />
@@ -180,9 +186,11 @@ Input your username and password with the credentials you used to create the DC-
 <img width="456" height="471" alt="image" src="https://github.com/user-attachments/assets/b4391e91-850c-4ff4-98d0-c64ea70a19f6" />
 
 <img width="398" height="439" alt="image" src="https://github.com/user-attachments/assets/1d8338f9-62b6-47e6-83d7-eb10a6a6f4a5" />
+
 You are now logged into DC-1 as the local admin (labuser).
 
 If its your first time logging in and you are met with this screen just hit accept and we can continue with the next step.
+
 <img width="1911" height="1075" alt="image" src="https://github.com/user-attachments/assets/cd35fa6f-2973-45e3-9e13-bfea465a016e" />
 
 Step 7: Install Active Directory Domain Services Role
@@ -210,6 +218,7 @@ Click Install
 
 Wait for the installation to complete. You'll see a "Installation succeeded" message.
 <img width="780" height="562" alt="image" src="https://github.com/user-attachments/assets/774b206c-5411-4a4c-aa10-ef9b97894795" />
+
 You can close the wizard, but do NOT restart yet — you'll restart after promotion.
 
 Step 8: Promote DC-1 to Domain Controller
