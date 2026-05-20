@@ -203,7 +203,7 @@ Objective: Add the AD DS role to DC-1 (this is required before promoting it to a
 On DC-1, open Server Manager (should be open by default; if not, click the Windows icon and search for it)
 Click Add Roles and Features on the right side
 
-Screenshot: Server Manager dashboard showing "Add Roles and Features" button.
+
 <img width="1925" height="1052" alt="image" src="https://github.com/user-attachments/assets/11d633d1-834a-4a46-a8c1-697e946d9b89" />
 
 In the wizard that opens, click Next on the "Before You Begin" page
@@ -218,12 +218,13 @@ On "Server Roles," scroll down and check the box for Active Directory Domain Ser
 
 A popup will appear asking about additional features. Click Add Features
 
+<img width="408" height="436" alt="image" src="https://github.com/user-attachments/assets/f7510a12-479f-4298-9224-4dda42aba252" />
+
 Click Next through the remaining screens
 
 On the "Confirmation" page, review that AD DS is selected
 
 Click Install
-<img width="408" height="436" alt="image" src="https://github.com/user-attachments/assets/f7510a12-479f-4298-9224-4dda42aba252" />
 
 Wait for the installation to complete. You'll see a "Installation succeeded" message.
 
