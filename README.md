@@ -157,20 +157,3 @@ PowerShell script used to create multiple user accounts in the `_EMPLOYEES` OU.
 
 ![Domain User Logged In - System Info](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step13-domain-user-logged-in.png)
 
----
-## Key Takeaways
-- Azure Virtual Machines can fully replicate on-premises Active Directory infrastructure.
-- Setting a **static private IP** on the Domain Controller is critical.
-- Client VM DNS **must** point to the Domain Controller.
-- PowerShell is essential for efficient user provisioning.
-- Using separate OUs (`_ADMINS` vs `_EMPLOYEES`) follows enterprise best practices.
-
----
-## Skills Demonstrated
-- Azure VM provisioning and networking
-- Static IP assignment on Azure NICs
-- Active Directory Domain Services installation and forest creation
-- DNS configuration for domain environments
-- OU and user management in ADUC
-- PowerShell automation
-- Domain join and RDP administration
