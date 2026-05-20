@@ -431,15 +431,20 @@ In the System Properties window, click the Change... button
 In the Computer Name/Domain Changes dialog:
 
 Computer name: Keep as Client-1 (or change if desired)
+
 Member of: Select Domain
+
 Domain field: Type mydomain.com
+
 Click OK
 <img width="321" height="384" alt="image" src="https://github.com/user-attachments/assets/9594b719-e852-4a64-bddf-fa013b65957a" />
 
 When prompted for credentials, enter:
 
-Username: MYDOMAIN\mike_admin (the domain admin account you created)
+Username: mydomain.com\mike_admin (the domain admin account you created)
+
 Password: (The password for mike_admin)
+
 Click OK
 
 <img width="455" height="382" alt="image" src="https://github.com/user-attachments/assets/68aa5b11-8764-471a-833e-e26ad2dc296d" />
@@ -447,7 +452,9 @@ Click OK
 <img width="297" height="152" alt="image" src="https://github.com/user-attachments/assets/3882666a-f488-487d-9b3e-d714794e5f79" />
 
 Click OK on the success dialog
+
 Click Close on System Properties
+
 Restart Client-1 when prompted
 
 Step 19: Verify Client-1 Appears in ADUC
