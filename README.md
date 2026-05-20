@@ -153,7 +153,7 @@ Virtual machine name: Client-1
 Region: East US
 Image: Windows 11 Pro
 Size: Standard_D2s_v3
-Username: localuser (or your choice)
+Username: labuser (or your choice)
 Password: Create a strong password and save it
 Public inbound ports: Select RDP (3389)
 
@@ -416,7 +416,7 @@ ipconfig /all
 Press Enter
 <img width="1122" height="625" alt="image" src="https://github.com/user-attachments/assets/ffa46abf-91f1-44f9-b522-e688c8f75367" />
 
-Expected output: The server should show DC-1's IP address and the domain should resolve successfully (as shown above, the name resolves to an IP address with 0% packet loss on ping).
+
 
 Step 18: Join Client-1 to the Domain
 Objective: Add Client-1 to the mydomain.com domain.
