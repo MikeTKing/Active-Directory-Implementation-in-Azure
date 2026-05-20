@@ -1,26 +1,35 @@
-﻿$PASSWORD_FOR_USERS = "Password1"
+﻿# Define the OU path
+$OUPath = "OU=_EMPLOYEES,DC=mydomain,DC=com"
 
-$User_First_Last_List = @(
-    "Aiden Bell",
-    "Brianna Clark",
-    "Carlos Diaz"
-    # ... add more as needed
+# Create an array of user names
+$users = @(
+    "john.doe",
+    "jane.smith",
+    "bob.johnson",
+    "alice.williams",
+    "charlie.brown",
+    "diana.prince",
+    "evan.harris",
+    "fiona.clark",
+    "george.martin",
+    "hannah.lee"
 )
 
-$password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+# Default password for new users
+$password = ConvertTo-SecureString "Password123!" -AsPlainText -Force
 
-foreach ($n in $User_First_Last_List) {
-    $first = $n.Split(" ")[0].ToLower()
-    $last = $n.Split(" ")[1].ToLower()
-    $username = "$($first.Substring(0,1))$($last)"
-
-    New-ADUser -AccountPassword $password `
-        -GivenName $first `
-        -Surname $last `
-        -DisplayName $username `
-        -Name $username `
-        -EmployeeID $username `
-        -PasswordNeverExpires $true `
-        -Path "ou=_EMPLOYEES,$((Get-ADDomain).distinguishedName)" `
-        -Enabled $true
+# Create each user
+foreach ($user in $users) {
+    New-ADUser -Name $user `
+               -SamAccountName $user `
+               -UserPrincipalName "$user@mydomain.com" `
+               -Path $OUPath `
+               -AccountPassword $password `
+               -Enabled $true `
+               -PasswordNotRequired $false `
+               -ChangePasswordAtLogon $false
+    
+    Write-Host "Created user: $user"
 }
+
+Write-Host "All users created successfully!"
