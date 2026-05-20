@@ -13,7 +13,7 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 
 **Environments Used:**
 - Microsoft Azure (Cloud Platform)
-- Windows Server 2022 (Domain Controller VM — DC-1)
+- Windows Server 2025 (Domain Controller VM — DC-1)
 - Windows 11 Pro (Client VM — Client-1)
 
 **Technology / Applications / Services Used:**
