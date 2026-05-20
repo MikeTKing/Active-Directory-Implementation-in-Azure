@@ -381,8 +381,11 @@ Copy the public ip address from Client-1
 <img width="1489" height="882" alt="image" src="https://github.com/user-attachments/assets/a2680d27-cd49-408b-9fa7-698b9927b6b8" />
 
 Open another rdp and input your credentials 
+
 Username: labuser (or whatever you set during Client-1 creation)
+
 Password: (The password you created for Client-1)
+
 <img width="403" height="479" alt="image" src="https://github.com/user-attachments/assets/eae3540e-cb07-499b-8028-89fe84420c3f" />
 
 Step 16: Configure Client-1's DNS to Point to DC-1
