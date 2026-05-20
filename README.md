@@ -291,6 +291,7 @@ First name:
 Last name: 
 User logon name: use jane_admin as an example
 Click Next
+
 <img width="430" height="366" alt="image" src="https://github.com/user-attachments/assets/d3313328-dd73-4414-9b19-6d29b1fcf1a8" />
 
 Set the password:
@@ -299,9 +300,11 @@ Password: Create a strong password (e.g., Password123!)
 Confirm password: Re-enter it
 Uncheck "User must change password at next logon" (optional, but helpful for a lab)
 Click Next
+
 <img width="434" height="375" alt="image" src="https://github.com/user-attachments/assets/093e0e42-9dba-41ea-b3b2-3d7892feedc0" />
 
 Click Finish
+
 <img width="749" height="522" alt="image" src="https://github.com/user-attachments/assets/207a78f8-1d07-4f7d-ad46-aa7457ade8e7" />
 
 Step 12: Add mike_admin to Domain Admins Group
@@ -315,6 +318,7 @@ Click Add
 In the Select Groups dialog, type Domain Admins in the text field
 Click Check Names to validate
 Click OK
+
 <img width="459" height="286" alt="image" src="https://github.com/user-attachments/assets/e9d9bd01-0ce2-4da8-83f8-b4a49d6f93e8" />
 <img width="406" height="535" alt="image" src="https://github.com/user-attachments/assets/24fd5582-a5dd-4158-b234-3715090a47e2" />
 
@@ -367,6 +371,7 @@ Select Custom
 Enter DC-1's private IP address (e.g., 10.0.0.5 from Step 4)
 Click Save
 <img width="1871" height="895" alt="image" src="https://github.com/user-attachments/assets/412fa7a0-84ca-4608-ab3d-ca2430b57f6c" />
+
 Wait 1-2 minutes for the change to take effect.
 
 Step 17: Test DNS Resolution (Verification)
@@ -377,6 +382,7 @@ Type the following command:
 ipconfig /all
 Press Enter
 <img width="1122" height="625" alt="image" src="https://github.com/user-attachments/assets/ffa46abf-91f1-44f9-b522-e688c8f75367" />
+
 Expected output: The server should show DC-1's IP address and the domain should resolve successfully (as shown above, the name resolves to an IP address with 0% packet loss on ping).
 
 Step 18: Join Client-1 to the Domain
@@ -430,6 +436,7 @@ Username: mydomain.com\john.doe (one of the bulk-created users)
 Password: Password123!
 Press Enter
 <img width="402" height="480" alt="image" src="https://github.com/user-attachments/assets/d6cd9146-7f79-4407-aee3-6e0e4c2cc401" />
+
 Wait for the profile to load (first-time login may take longer as the system creates the profile)
 
 (Optional) Open Command Prompt and type whoami to confirm the domain context
