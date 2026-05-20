@@ -249,8 +249,8 @@ Click Next
 
 On "Domain Controller Options":
 
-Forest Functional Level: Windows Server 2016 (or default)
-Domain Functional Level: Windows Server 2016 (or default)
+Forest Functional Level: Windows Server 2025 (or default)
+Domain Functional Level: Windows Server 2025 (or default)
 Password: Enter a Directory Services Restore Mode (DSRM) password and confirm it
 Check the box for DNS server (it should auto-check)
 Click Next
@@ -267,6 +267,7 @@ Important: The server will restart automatically to complete the promotion. This
 Wait for the restart and reconnect. When you reconnect via RDP:
 
 Your name will now be DC-1.mydomain.com (the domain is part of your identity) and the Active Directory should show being healthy(all green).
+
 <img width="397" height="480" alt="image" src="https://github.com/user-attachments/assets/8c846796-daf0-4de2-b770-a76f0b4040e2" />
 
 <img width="1917" height="1005" alt="image" src="https://github.com/user-attachments/assets/14247cf8-07c4-4967-b7dd-9e0c7f3af3fc" />
@@ -293,6 +294,7 @@ Select New → Organizational Unit
 
 In the dialog, enter the name: _EMPLOYEES
 Click OK
+
 <img width="433" height="376" alt="image" src="https://github.com/user-attachments/assets/6d906214-8a4f-4c8d-a648-6d1e5aa9deb8" />
 
 Repeat the process to create a second OU named _ADMINS
@@ -436,7 +438,9 @@ When prompted for credentials, enter:
 Username: MYDOMAIN\mike_admin (the domain admin account you created)
 Password: (The password for mike_admin)
 Click OK
+
 <img width="455" height="382" alt="image" src="https://github.com/user-attachments/assets/68aa5b11-8764-471a-833e-e26ad2dc296d" />
+
 <img width="297" height="152" alt="image" src="https://github.com/user-attachments/assets/3882666a-f488-487d-9b3e-d714794e5f79" />
 
 Click OK on the success dialog
@@ -450,6 +454,7 @@ Go back to DC-1 (via RDP or reconnect if disconnected)
 Open Active Directory Users and Computers (ADUC)
 Navigate to Computers container under mydomain.com
 Look for Client-1 in the list
+
 <img width="753" height="528" alt="image" src="https://github.com/user-attachments/assets/432f5932-e0ff-408d-ad84-28d645778ee5" />
 
 Step 20: Log Into Client-1 as a Domain User
@@ -461,6 +466,7 @@ Enter domain user credentials:
 Username: mydomain.com\john.doe (one of the bulk-created users)
 Password: Password123!
 Press Enter
+
 <img width="402" height="480" alt="image" src="https://github.com/user-attachments/assets/d6cd9146-7f79-4407-aee3-6e0e4c2cc401" />
 
 Wait for the profile to load (first-time login may take longer as the system creates the profile)
