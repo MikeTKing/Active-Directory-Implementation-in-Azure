@@ -41,101 +41,90 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 ---
 ## Demonstration
 
-### Part 1: Azure Resource Setup
+PART 1: AZURE INFRASTRUCTURE SETUP
+Step 1: Create Azure Resource Group
+Objective: Create a dedicated Resource Group to organize all resources for this project.
 
-**Step 1 — Deploy Both VMs in Azure**  
-Two Virtual Machines are created in the same Resource Group (`AD-Lab`) and VNet (`AD-VNet`) in East US — `DC-1` (Windows Server 2022) and `Client-1` (Windows 11 Pro). Both show **Status: Running**.
+Log in to the Azure Portal
+Click + Create a resource at the top left
+Search for Resource group and click it
+Click Create
+Fill in the details:
 
-![Both VMs running in Azure Portal](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step01-azure-vms-running.png)
+Subscription: (Select your subscription)
+Resource group name: AD-Lab
+Region: East US
 
----
 
-**Step 2 — Set DC-1's Private IP to Static**  
-Navigate to DC-1's NIC → IP Configurations → Edit → set Allocation to **Static**. DC-1's private IP is locked to `10.0.0.4`.
+Click Review + create
+Click Create
+<img width="1870" height="884" alt="image" src="https://github.com/user-attachments/assets/67f8b5d6-a6f9-43e9-addd-d2f7f34148a6" />
 
-<img width="1568" alt="DC-1 Static IP Configuration" src="https://github.com/user-attachments/assets/255ac892-78d0-4169-96d4-4f2ac5519c3d">
+Step 2: Create Virtual Network
+Objective: Set up a Virtual Network where both VMs will communicate.
 
----
+In the Azure Portal, navigate to Virtual networks
+Click + Create
+Fill in the following:
 
-### Part 2: Installing Active Directory
+Subscription: (Your subscription)
+Resource group: AD-Lab
+Name: AD-VNet
+Region: East US
 
-**Step 3 — Promote DC-1 to Domain Controller**  
-After installing the AD DS role, the promotion wizard is launched. **Add a new forest** is selected and the root domain name is set to `mydomain.com`.
 
-<img width="1568" alt="AD DS Promotion Wizard" src="https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step03-adds-promotion-wizard.png">
+Click Next: IP Addresses
+Verify the default address space is 10.0.0.0/16 and subnet is default (10.0.0.0/24)
+Click Review + create → Create
+<img width="1866" height="883" alt="image" src="https://github.com/user-attachments/assets/934fb534-fb0a-44d3-80e3-8c79c67638ed" />
+<img width="1869" height="886" alt="image" src="https://github.com/user-attachments/assets/f52413fb-2bcb-4c06-b8df-b6b2db4fd628" />
 
----
+Step 3: Create Domain Controller VM (DC-1)
+Objective: Deploy a Windows Server 2022 VM that will become the Domain Controller.
 
-**Step 4 — AD DS Installation**  
-Install Active Directory Domain Services via Server Manager.
+In Azure Portal, click + Create a resource
+Search for Windows Server 2022 Datacenter
+Click Create
+Fill in Basics tab:
 
-![AD DS Role Installation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step4-ad-installation.png)
+Subscription: (Your subscription)
+Resource group: AD-Lab
+Virtual machine name: DC-1
+Region: East US
+Image: Windows Server 2022 Datacenter
+Size: Standard_D2s_v3 (or similar)
+Username: labuser (or your choice)
+Password: Create a strong password and save it
+Public inbound ports: Select RDP (3389)
 
-**Step 5 — AD DS Installation Confirmed**  
-Server Manager shows AD DS and DNS roles installed and healthy.
+<img width="1869" height="905" alt="image" src="https://github.com/user-attachments/assets/de8c603b-1fed-4b62-ac76-cf57be9e6adc" />
+Click Next: Networking
+Configure Networking:
 
-![Server Manager - AD DS and DNS Installed](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step04-server-manager-adds-installed.png)
+Virtual network: AD-VNet
+Subnet: default (10.0.0.0/24)
+Public IP: (Auto-created)
+NIC network security group: Advanced → Create new
+Inbound rules: Ensure RDP (3389) is allowed
 
----
 
-### Part 3: Creating Organizational Units and Users
+Click Review + create → Create
+<img width="1883" height="894" alt="image" src="https://github.com/user-attachments/assets/31547441-2167-4442-9c57-f1f161fc4f2f" />
 
-**Step 6 — Create OUs in ADUC**  
-Two Organizational Units are created: `_EMPLOYEES` and `_ADMINS`.
+Wait for deployment to complete. This may take 3-5 minutes. Once complete, you'll see a "Deployment successful" message.
+<img width="359" height="152" alt="image" src="https://github.com/user-attachments/assets/05155078-7494-49a8-99ed-682b1599bacf" />
 
-![ADUC OUs Created](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step05-aduc-ous-created.png)
+Step 4: Set DC-1's Network Interface to Static IP
+Objective: Lock DC-1's private IP address so it doesn't change (required for it to be a reliable DNS server).
 
----
+Navigate to DC-1 resource (click the Go to resource button or search for it)
+On the left menu, click Networking
+Click the Network Interface link (usually named something like dc-1***)
+<img width="1872" height="893" alt="image" src="https://github.com/user-attachments/assets/1b9d4190-6911-4f67-ba95-7217875e05c4" />
 
-**Step 7 — Create a Domain Admin Account**  
-User `mike_admin` (Michael King) created in the `_ADMINS` OU and added to Domain Admins group.
 
-![mike_admin Account Creation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step06-mike-admin-created.png)
 
----
 
-**Step 8 — Create Bulk Users with PowerShell**  
-PowerShell script used to create multiple user accounts in the `_EMPLOYEES` OU.
 
-![PowerShell Bulk User Creation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step07-powershell-user-creation.png)
 
----
-
-**Step 9 — Verify Users in ADUC**
-
-![Employees OU Populated](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step08-aduc-employees-populated.png)
-
----
-
-### Part 4: Joining Client-1 to the Domain
-
-**Step 10 — Set Client-1 DNS to DC-1's Private IP**
-
-![Client-1 DNS Configuration](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step09-client1-dns-set.png)
-
----
-
-**Step 11 — Join Client-1 to the Domain**
-
-![Domain Join Confirmation](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step10-domain-join.png)
-
----
-
-**Step 12 — Verify Client-1 in ADUC**
-
-![Client-1 in AD Computers Container](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step11-aduc-client1-verified.png)
-
----
-
-### Part 5: Logging in as a Domain User
-
-**Step 13 — RDP into Client-1 as a Domain User**
-
-![RDP Login as Domain User](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step12-rdp-domain-user-login.png)
-
----
-
-**Step 14 — Domain User Successfully Logged In**
-
-![Domain User Logged In - System Info](https://github.com/MikeTKing/Active-Directory-Implementation-in-Azure/blob/main/step13-domain-user-logged-in.png)
 
