@@ -131,7 +131,7 @@ Click on the IP configuration (usually named ipconfig1)
 <img width="1877" height="891" alt="image" src="https://github.com/user-attachments/assets/2000b79a-2ad8-4fcd-b164-b9f28297ba18" />
 
 Change Allocation from Dynamic to Static
-Keep the IP address as is (Azure should auto-assign something like 10.0.0.4)
+Keep the IP address as is (Azure should auto-assign something like 10.0.0.5)
 Click Save
 <img width="383" height="896" alt="image" src="https://github.com/user-attachments/assets/9f6c5760-9af5-48e5-bdb9-ab6054408004" />
 
@@ -305,7 +305,7 @@ Fill in the New Object - User dialog:
 
 First name: 
 Last name: 
-User logon name: use jane_admin as an example
+User logon name: use mike_admin as an example
 Click Next
 
 <img width="430" height="366" alt="image" src="https://github.com/user-attachments/assets/d3313328-dd73-4414-9b19-6d29b1fcf1a8" />
