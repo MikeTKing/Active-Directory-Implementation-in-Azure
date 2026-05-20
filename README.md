@@ -25,24 +25,6 @@ This project demonstrates the end-to-end deployment and configuration of an on-p
 - PowerShell ISE
 
 ---
-## Environments and Technologies Used
-
-| Component              | Details                                      |
-|------------------------|----------------------------------------------|
-| Cloud Provider         | Microsoft Azure                              |
-| Domain Controller OS   | Windows Server 2022 Datacenter               |
-| Client OS              | Windows 11 Pro                               |
-| VM Size                | Standard_D2s_v3                              |
-| Networking             | Azure Virtual Network (AD-VNet) / subnet 10.0.0.0/24 |
-| Resource Group         | AD-Lab                                       |
-| Region                 | East US                                      |
-
----
-## Operating Systems Used
-- **Windows Server 2022** — Domain Controller (DC-1)
-- **Windows 11 Pro** — Client Machine (Client-1)
-
----
 ## High-Level Deployment and Configuration Steps
 
 1. Deploy Domain Controller VM (DC-1) in Azure and set static private IP
