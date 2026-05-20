@@ -77,6 +77,7 @@ Click Next: IP Addresses
 Verify the default address space is 10.0.0.0/16 and subnet is default (10.0.0.0/24)
 Click Review + create → Create
 <img width="1866" height="883" alt="image" src="https://github.com/user-attachments/assets/934fb534-fb0a-44d3-80e3-8c79c67638ed" />
+
 <img width="1869" height="886" alt="image" src="https://github.com/user-attachments/assets/f52413fb-2bcb-4c06-b8df-b6b2db4fd628" />
 
 Step 3: Create Domain Controller VM (DC-1)
