@@ -184,7 +184,9 @@ Copy the public ip address from your vm to paste into the rdp.
 Input your username and password with the credentials you used to create the DC-1 VM
 <img width="401" height="485" alt="image" src="https://github.com/user-attachments/assets/86fac659-af50-4c6b-b78e-456c5bfc58c3" />
 
+
 <img width="456" height="471" alt="image" src="https://github.com/user-attachments/assets/b4391e91-850c-4ff4-98d0-c64ea70a19f6" />
+
 
 <img width="398" height="439" alt="image" src="https://github.com/user-attachments/assets/1d8338f9-62b6-47e6-83d7-eb10a6a6f4a5" />
 
@@ -205,10 +207,12 @@ Screenshot: Server Manager dashboard showing "Add Roles and Features" button.
 
 In the wizard that opens, click Next on the "Before You Begin" page
 On "Installation Type," select Role-based or feature-based installation and click Next
+
 <img width="783" height="554" alt="image" src="https://github.com/user-attachments/assets/0e236f2c-b0ba-4cf7-95ac-9ae2b4d83f7a" />
 
 On "Server Selection," verify DC-1 is selected and click Next
 On "Server Roles," scroll down and check the box for Active Directory Domain Services
+
 <img width="782" height="557" alt="image" src="https://github.com/user-attachments/assets/43c92b4e-7d13-4c60-8e27-b3cafd1da79a" />
 
 A popup will appear asking about additional features. Click Add Features
@@ -218,6 +222,7 @@ Click Install
 <img width="408" height="436" alt="image" src="https://github.com/user-attachments/assets/f7510a12-479f-4298-9224-4dda42aba252" />
 
 Wait for the installation to complete. You'll see a "Installation succeeded" message.
+
 <img width="780" height="562" alt="image" src="https://github.com/user-attachments/assets/774b206c-5411-4a4c-aa10-ef9b97894795" />
 
 You can close the wizard, but do NOT restart yet — you'll restart after promotion.
@@ -227,6 +232,7 @@ Objective: Promote DC-1 to a Domain Controller and create a new Active Directory
 
 In Server Manager, notice a flag icon at the top with an exclamation mark. Click it.
 Click Promote this server to a domain controller
+
 <img width="1909" height="407" alt="image" src="https://github.com/user-attachments/assets/02ee19f4-6910-4512-9150-0bc9660ffb86" />
 
 In the Active Directory Domain Services Configuration Wizard:
