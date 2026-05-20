@@ -132,7 +132,9 @@ Click on the IP configuration (usually named ipconfig1)
 
 Change Allocation from Dynamic to Static
 Keep the IP address as is (Azure should auto-assign something like 10.0.0.5)
+
 Click Save
+
 <img width="383" height="896" alt="image" src="https://github.com/user-attachments/assets/9f6c5760-9af5-48e5-bdb9-ab6054408004" />
 
 Important: Note down DC-1's private IP address (e.g., 10.0.0.5). You'll need this when configuring Client-1's DNS.
@@ -437,6 +439,7 @@ Member of: Select Domain
 Domain field: Type mydomain.com
 
 Click OK
+
 <img width="321" height="384" alt="image" src="https://github.com/user-attachments/assets/9594b719-e852-4a64-bddf-fa013b65957a" />
 
 When prompted for credentials, enter:
@@ -448,6 +451,7 @@ Password: (The password for mike_admin)
 Click OK
 
 <img width="455" height="382" alt="image" src="https://github.com/user-attachments/assets/68aa5b11-8764-471a-833e-e26ad2dc296d" />
+
 
 <img width="297" height="152" alt="image" src="https://github.com/user-attachments/assets/3882666a-f488-487d-9b3e-d714794e5f79" />
 
