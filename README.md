@@ -182,6 +182,7 @@ Copy the public ip address from your vm to paste into the rdp.
 <img width="1581" height="899" alt="image" src="https://github.com/user-attachments/assets/1ee28e2d-288e-4aa2-9ba6-749fcef7e832" />
 
 Input your username and password with the credentials you used to create the DC-1 VM
+
 <img width="401" height="485" alt="image" src="https://github.com/user-attachments/assets/86fac659-af50-4c6b-b78e-456c5bfc58c3" />
 
 
@@ -216,8 +217,11 @@ On "Server Roles," scroll down and check the box for Active Directory Domain Ser
 <img width="782" height="557" alt="image" src="https://github.com/user-attachments/assets/43c92b4e-7d13-4c60-8e27-b3cafd1da79a" />
 
 A popup will appear asking about additional features. Click Add Features
+
 Click Next through the remaining screens
+
 On the "Confirmation" page, review that AD DS is selected
+
 Click Install
 <img width="408" height="436" alt="image" src="https://github.com/user-attachments/assets/f7510a12-479f-4298-9224-4dda42aba252" />
 
