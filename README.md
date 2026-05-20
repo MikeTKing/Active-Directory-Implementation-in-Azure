@@ -312,8 +312,8 @@ Select New → User
 
 Fill in the New Object - User dialog:
 
-First name: 
-Last name: 
+First name: Michael
+Last name: King
 User logon name: use mike_admin as an example
 Click Next
 
